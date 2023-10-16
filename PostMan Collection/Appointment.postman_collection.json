@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "5b53fb94-1e2e-4cce-bbf8-a5631eaf549e",
+		"name": "Appointment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27085377"
+	},
+	"item": [
+		{
+			"name": "Add Appointment with one of Suggested Doctor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:8080/appointment/add/suggested_doctor/3",
+				"description": "Booked appointment with one of suggested doctor\n\nwhen patient with given patient id used this api, then based on patient city and sysymptom one doctor is appointed to patient\n\nif patient not in the mention city then it give message \" we are expanding our network\"\n\nif doctor with given symptoms not found then it give \" doctor with given symptom is not present\""
+			},
+			"response": []
+		},
+		{
+			"name": "Add appointment with given doctor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:8080/appointment/add/1/6",
+				"description": "patient can book appointment with any doctor using doctor id and patient id"
+			},
+			"response": []
+		},
+		{
+			"name": "Find Appointment of patient",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/appointment/find_appointment_by_patient/3",
+				"description": "we get data of appointment booked by given patient with patient id"
+			},
+			"response": []
+		},
+		{
+			"name": "Find Appointment of doctor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/appointment/find_appointment_by_doctor/4",
+				"description": "we get list of appointment booked for particular doctor with doctorid"
+			},
+			"response": []
+		}
+	]
+}

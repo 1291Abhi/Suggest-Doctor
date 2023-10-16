@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "0eeeb364-42ec-4b4c-8bc2-5e7c1dc07cac",
+		"name": "SuggestDoctor",
+		"description": "there are 5 api\n\n1-add doctor- add doctor to database\n\n2- remove doctor- remove doctor from database\n\n3- add patient- add patient to database\n\n4- remove patient- remove patient from database\n\n5- suggest doctor- suggest doctor based on symptoms and city",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27085377"
+	},
+	"item": [
+		{
+			"name": "Add Doctor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `",
+							"<div style=\"text-align: center;\">",
+							"    <h1>Error</h1>",
+							"    <p>{{response.error}}</p>",
+							"</div>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    return { response: pm.response.json() };",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Aryan\",\r\n    \"city\":\"NOIDA\",\r\n    \"email\":\"aryan@gmail.com\",\r\n    \"phoneNumber\":1234567890,\r\n    \"speciality\":\"ORTHOPEDIC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/doctor/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctor",
+						"add"
+					]
+				},
+				"description": "Validation Rule:\n\n**1\\. Name Validation**\n\n- The `name` field should be provided and must contain at least 3 characters.\n    \n\n**2\\. City Validation**\n\n- The `city` field should be provided and must be in capital letters.\n    \n- Accepted city values are DELHI, NOIDA, and FARIDABAD. Any other value will result in a validation error.\n    \n\n**3\\. Speciality Validation**\n\n- The `speciality` field should be provided.\n    \n- Accepted specialities are ORTHOPEDIC, GYNECOLOGY, DERMATOLOGY, and ENT. Ensure you provide one of these values; otherwise, a validation error will occur.\n    \n\n**4\\. Phone Number Validation**\n\n- The `phoneNumber` field should be provided.\n    \n- The phone number must be at least 10 characters long.\n    \n\n**5\\. Email Validation**\n\n- The `email` field should be provided.\n    \n- It must be a valid email address format (e.g., [name@example.com](https://mailto:name@example.com)). If not, a validation error will be triggered.\n    \n\nBy following these validation rules and providing the correct input, you can successfully add a doctor. Any deviation from these rules will result in a \"400: Bad Request\" error response with detailed error messages."
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Doctor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/doctor/remove/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"doctor",
+						"remove",
+						"1"
+					]
+				},
+				"description": "Remove doctor whose ID = given id which is a path variable in this case"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Patient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"ghanshyam\",\r\n    \"city\":\"NOIDA\",\r\n    \"email\":\"shyam@gmail.com\",\r\n    \"phoneNumber\":1234567890,\r\n    \"symptom\":\"TISSUE_INJURIES\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/patient/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patient",
+						"add"
+					]
+				},
+				"description": "Validation Rule:\n\n**1\\. Name Validation**\n\n- The `name` field should be provided and must contain at least 3 characters.\n    \n\n**2\\. City Validation**\n\n- City character must not greater than 20 charcater\n    \n\n**3\\. Symptom Validation**\n\n- The `speciality` field should be provided.\n- Accepted symptoms are ARTHRITIS, BACK_PAIN, TISSUE_INJURIES, DYSMENORRHEA, SKIN_INFECTION, SKIN_BURN ,EAR_PAIN and EYE_PAIN. Ensure you provide one of these values; otherwise, a validation error will occur.\n    \n\n**4\\. Phone Number Validation**\n\n- The `phoneNumber` field should be provided.\n- The phone number must be at least 10 characters long.\n    \n\n**5\\. Email Validation**\n\n- The `email` field should be provided.\n- It must be a valid email address format (e.g., [name@example.com](https://mailto:name@example.com)). If not, a validation error will be triggered.\n    \n\nBy following these validation rules and providing the correct input, you can successfully add a doctor. Any deviation from these rules will result in a \"400: Bad Request\" error response with detailed error messages."
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Patient",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/patient/remove/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"patient",
+						"remove",
+						"4"
+					]
+				},
+				"description": "Remove patient whose id = given id which is a path variable in this case"
+			},
+			"response": []
+		},
+		{
+			"name": "SuggestedDoctor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/suggestDoctor/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"suggestDoctor",
+						"3"
+					]
+				},
+				"description": "**1\\. Suggested Doctor Based on City and Symptoms**\n\nDescription: Retrieve a list of suggested doctors based on the patient's city and symptoms.\n\n**2\\. Handling Unsupported Cities**\n\n- Description: If the provided city is not one of DELHI, FARIDABAD, or NOIDA, the API will respond with the message \"We are still waiting to expand to your location.\"\n    \n\n**3\\. Handling No Doctors for Symptoms**\n\n- Description: If there are no doctors available in the provided city for the specified symptoms, the API will respond with the message \"There isn't any doctor present at your location for your symptom.\""
+			},
+			"response": []
+		}
+	]
+}
